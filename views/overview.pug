@@ -1,0 +1,96 @@
+extends base
+
+block content 
+  main.main
+    .card-container 
+      if tours
+        each tour in tours
+          .card
+            .card__header
+              .card__picture
+                .card__picture-overlay &nbsp;
+                img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+              h3.heading-tertirary
+                span #{tour.name}
+
+            .card__details
+              h4.card__sub-heading #{tour.difficulty} #{tour.duration}-day tour
+              p.card__text #{tour.summary}
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-map-pin')
+                span #{tour.startLocation.description}
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-calendar')
+                span= tour.startDates[0].toLocaleString('en-us',{month:'long', year:'numeric'})
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-flag')
+                |       
+                span #{tour.locations.length} stops
+              .card__data
+                svg.card__icon
+                  use(xlink:href='/img/icons.svg#icon-user')
+                span #{tour.maxGroupSize} people
+
+            .card__footer
+              p
+                span.card__footer-value= `$${tour.price} `
+                span.card__footer-text per person
+              p.card__ratings
+                span.card__footer-value #{tour.ratingsAverage }
+                span.card__footer-text= ` rating (${tour.ratingsQuantity})`
+              a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+      //- if !tours 
+      //-   .card
+      //-     .card__header
+      //-       .card__picture
+      //-         .card__picture-overlay &nbsp;
+      //-         img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+      //-       h3.heading-tertirary
+      //-         span #{tour.name}
+
+      //-     .card__details
+      //-       h4.card__sub-heading #{tour.difficulty} #{tour.duration}-day tour
+      //-       p.card__text #{tour.summary}
+      //-       .card__data
+      //-         svg.card__icon
+      //-           use(xlink:href='/img/icons.svg#icon-map-pin')
+      //-         span #{tour.startLocation.description}
+      //-       .card__data
+      //-         svg.card__icon
+      //-           use(xlink:href='/img/icons.svg#icon-calendar')
+      //-         span= tour.startDates[0].toLocaleString('en-us',{month:'long', year:'numeric'})
+      //-       .card__data
+      //-         svg.card__icon
+      //-           use(xlink:href='/img/icons.svg#icon-flag')
+      //-         |       
+      //-         span #{tour.locations.length} stops
+      //-       .card__data
+      //-         svg.card__icon
+      //-           use(xlink:href='/img/icons.svg#icon-user')
+      //-         span #{tour.maxGroupSize} people
+
+      //-     .card__footer
+      //-       p
+      //-         span.card__footer-value= `$${tour.price} `
+      //-         span.card__footer-text per person
+      //-       p.card__ratings
+      //-         span.card__footer-value #{tour.ratingsAverage }
+      //-         span.card__footer-text= ` rating (${tour.ratingsQuantity})`
+      //-       a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+  
+  - let top = false;
+  - if(tours.length === 0) {top = true; }
+  if top
+    section.sectionNoTour
+      .cta
+        .cta__img.cta__img--logo
+          img(src='/img/logo-white.png', alt='Natours logo')
+        img.cta__img.cta__img--1(src=`/img/tours/tour-1-1.jpg`, alt='Tour picture')
+        img.cta__img.cta__img--2(src=`/img/tours/tour-2-1.jpg`, alt='Tour picture')
+        .cta__content
+          h2.heading-secondary You currently have no tours! What are you waiting for?
+          p.cta__text= `An adventure. Infinite memories. Make it yours today!`                        
+          button.btn.btn--green.span-all-rows.bookingTour#book-tour Book tour now!  

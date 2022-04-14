@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      //- meta(name='viewport' content="script-src 'unsafe-inline'")
+      //- meta(name='viewport' content="style-src 'unsafe-inline'")
+      //- meta(http-equiv="Content-Security-Policy" content="script-src https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js")
+      link(rel='stylesheet' href='/css/style.css')
+      link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      title Natours | #{title}
+      //- <script>
+      //-   let styleSrc = "style-src";
+      //-   styleSrc += "'self'";
+      //-   styleSrc += "https://js.stripe.com/v3/"
+      //-   const csp = [defaultSrc, formAction, frameAncestors, styleSrc].join(";");
+      //- </script>
+  
+  body
+    // HEADER
+    include _header
+        
+    // CONTENT
+    block content
+      h1 This is a placeholder heading
+      
+    // FOOTER
+    include _footer
+    
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js" integrity="sha512-MNW6IbpNuZZ2VH9ngFhzh6cUt8L/0rSVa60F8L22K1H72ro4Ki3M/816eSDLnhICu7vwH/+/yb8oB3BtBLhMsA==" crossorigin="anonymous" referrerpolicy="no-referrer")
+    script(src='/js/mapBox.js')
+    //- script(src="https://js.stripe.com/v3/")
+    script(src='/js/login.js')
+    //- script(src='/js/alerts.js')
+    //- script(src='/js/index.js')
+    //- script(type="module" src='/js/index.js')
+
+    //- script(src='/js/bundled/index.js')
